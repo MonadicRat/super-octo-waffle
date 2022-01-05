@@ -1,9 +1,13 @@
-coeffs: age.txt average_beta.txt
-	echo 'ENTERING COEFFS TARGET' && R CalculatePearsons1.1.0.R
+all: coeffs genes gsea_go gsea_kegg
 
-genes: coeffs.txt meth.txt
+coeffs: age.txt average_beta.csv
+	echo 'ENTERING COEFFS TARGET' && Rscript CalculatePearsons1.1.0.R
+
+genes: meth.csv coeffs.txt
 	echo 'ENTERING GENES TARGET' && python3 search.py
 
+gsea_go: genes_and_sites.csv
+	echo 'ENTERING GSEA_GO TARGET' && Rscript GSEA.R
 
-gsea: genes_and_sites.csv
-	echo 'ENTERING GSEA TARGET' && R GSEA.R
+gsea_kegg: genes.rhos.filtered.csv
+	echo 'ENTERING GSEA_KEGG TARGET' && Rscript GSEA_pathways.R
