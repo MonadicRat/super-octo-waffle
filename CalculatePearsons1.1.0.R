@@ -6,8 +6,10 @@ library(dplyr)
 setwd("/media/yanus/3ce7ab71-4bf7-4250-894c-508fb7a28109/Meth/")
 dimensions <- c(100, 100)
 betas <- read.table("GSE40279_average_beta_GSM989827-GSM989990.sample.txt", header = T, sep = "\t", row.names = 1)
+print("[CalculatePearsons] Beta values loaded")
 
 myNorm <- champ.norm(beta = betas, method = "PBC")
+print("[CalculatePearsons] Normalization done")
 age <- read.table("age.sample.txt", sep = "\t", header = F)
 
 coeffs <- matrix(nrow = dimensions[1], ncol = 2)
@@ -17,5 +19,7 @@ for (r in 1:dimensions[1]){
   coeffs[r,1] <- coeff$estimate
   coeffs[r,2] <- coeff$p.value
 } 
+print("[CalculatePearsons] Coefficients calculated")
 
 write.table(coeffs, "coeffs.sample.txt", quote = F, sep = "\t")
+print("[CalculatePearsons] File written. Done")
