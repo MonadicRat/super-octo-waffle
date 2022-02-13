@@ -7,7 +7,7 @@ genes: meth.csv coeffs.txt
 	echo 'ENTERING GENES TARGET' && python3 search.py
 
 gsea_go: genes_and_sites.csv
-	echo 'ENTERING GSEA_GO TARGET' && Rscript GSEA.R
+	echo 'ENTERING GSEA_GO TARGET' && Rscript --vanilla GSEA.R
 
 gsea_kegg: genes.rhos.filtered.csv
-	echo 'ENTERING GSEA_KEGG TARGET' && Rscript GSEA_pathways.R
+	echo 'ENTERING GSEA_KEGG TARGET' && Rscript --vanilla GSEA_pathways.R
