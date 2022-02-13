@@ -1,10 +1,11 @@
 from pandas import DataFrame, read_csv, Series
 
-ref = read_csv("./meth2.csv")
-sites = read_csv("./coeffs.sample.txt", sep='\t')
+ref = read_csv("/media/yanus/3ce7ab71-4bf7-4250-894c-508fb7a28109/Meth/meth2.csv")
+sites = read_csv("/media/yanus/3ce7ab71-4bf7-4250-894c-508fb7a28109/Meth/coeffs.p2.txt", sep='\t')
+print("Data loaded")
 
 ref = ref.sort_values('Name')
-print('Values FUCKING SORTED AGAIN, YOU STUPID MORON! I FUCKED WITH THIS SHIT FOR 2 DAYS, DAMN IT!')
+print('Values sorted')
 nref = len(ref)
 
 output = DataFrame(
@@ -12,6 +13,7 @@ output = DataFrame(
 print('All preparations done. Beginning')
 
 for cg in sites.iterrows():
+    print(cg[1]['Name'])
     cgname = int(cg[1]['Name'][2:])
     ind = ref['Name'].searchsorted(cgname)
     if ind != 0 and ind <= nref:
