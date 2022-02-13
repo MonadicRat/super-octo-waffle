@@ -12,7 +12,7 @@ betas <- read.big.matrix("GSE40279_average_beta_GSM989827-GSM989990.sample.txt",
                          ignore.row.names = F, has.row.names = T)
 print("[CalculatePearsons] Beta values loaded")
 
-#myNorm <- champ.norm(beta = betas, method = "PBC")
+betas <- champ.norm(beta = betas, method = "PBC")
 print("[CalculatePearsons] Normalization done")
 age <- read.table("age.txt", sep = "\t", header = F)
 
